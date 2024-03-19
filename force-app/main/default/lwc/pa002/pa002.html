@@ -1,0 +1,36 @@
+<template>
+    <lightning-card  variant="Narrow" >
+        <lightning-spinner alternative-text="Loading" size="small" if:true={isLoading}></lightning-spinner>
+        <!--Display the button on the top-->
+        <p slot="actions" if:true={isTop}>
+            <lightning-button if:true={showButton} variant="brand" label={buttonLabel} title={buttonLabel} onclick={handleClick}></lightning-button>
+        </p>
+        <div class="slds-m-around_small" if:true={isTop}>
+            <lightning-progress-indicator current-step={currentValue} type={pathType} has-error="false" variant="shaded">
+                <template if:true={pathValues} for:each={pathValues} for:item="step" for:index="index">
+                    <lightning-progress-step data-index={index} data-value={step.value}
+                        onclick={handleSelectChange} key={step.value} label={step.label}
+                        value={step.value}>
+                    </lightning-progress-step>
+                </template>
+            </lightning-progress-indicator>
+        </div>
+        <!--Display the button in the same row-->
+        <lightning-layout multiple-rows if:false={isTop}>
+            <lightning-layout-item size="12" padding="around-small" small-device-size="3" medium-device-size="6" large-device-size="10" >
+                <lightning-progress-indicator current-step={currentValue} type={pathType} has-error="true" variant="base">
+                    <template if:true={pathValues} for:each={pathValues} for:item="step" for:index="index">
+                        <lightning-progress-step data-index={index} data-value={step.value}
+                            onchange={handleSelectChange} onclick={handleSelectChange}
+                            onselect={handleSelectChange} key={step.value} label={step.label}
+                            value={step.value}>
+                        </lightning-progress-step>
+                    </template>
+                </lightning-progress-indicator>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" padding="around-small" small-device-size="2" medium-device-size="2" large-device-size="2">
+                <lightning-button if:true={showButton} variant="brand" label={buttonLabel} title={buttonLabel} onclick={handleClick}></lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

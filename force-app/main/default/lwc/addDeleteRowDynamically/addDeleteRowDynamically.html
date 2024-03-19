@@ -1,0 +1,36 @@
+<template><!-- sldsValidatorIgnore -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</br>
+<title></title> dynamically add/remove rows in html List using javascript JQuery </title>
+<script type="text/javascript" src="http://w3web.net/wp-includes/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="include/addRemoveRows.js"></script>
+<link rel="stylesheet" href="include/addRemoveRows.css" type="text/css" media="all">
+
+</head>
+<body>
+<div>  
+   <input class="addButton" type="button" id="mybtn" value="Add" />
+</div>
+<ol id="main">
+	<li id="myItem" style="display:none">	        	
+        <!-- sldsValidatorIgnoreNextLine -->
+        <input class="inputFld" type="text" value="" />
+        <select class="inputFld">
+            <option>--Select--</option>
+            <option>India</option>
+            <option>Colombia</option>
+            <option>Egypt</option>
+            <option>Indonesia</option>
+            <option>Malaysia</option>
+        </select>
+        <a class="crossIcon" href="javascript:void(0)" rel="0" onclick="deleteItem(this)" title="Remove">✖</a>
+	</li>
+</ol>
+
+ <br/>
+</body>
+</html>
+</template>

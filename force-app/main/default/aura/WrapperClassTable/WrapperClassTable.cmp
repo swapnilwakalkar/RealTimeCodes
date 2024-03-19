@@ -1,0 +1,34 @@
+<aura:component controller="wrapperCustomObjCtrCmp" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:isUrlAddressable" access="global" >
+    
+<aura:attribute name="wrapListItems" type="NewStudent__c[]"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<aura:attribute name="recSelectId" type="String" default=""/>    
+
+<div class="slds slds-p-horizontal--medium">
+    <table class="slds-table slds-table--bordered slds-table--col-bordered" style="border-collapse:collapse;">
+        <thead> 
+            <tr>
+                <th>Student Name</th>                   
+                <th>Email</th>
+                 <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.wrapListItems}" var="wrapVar" indexVar="index">
+                <tr id="{!wrapVar.recStudentId}">
+                    <td>{!wrapVar.studentName}</td>                                                
+                    <td>{!wrapVar.studentEmail}</td>
+                    <td>{!wrapVar.studentAddress}</td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+
+<br/><br/>
+<!--Start RelatedTopics Section-->
+<!--End RelatedTopics Section-->
+
+
+ </div>
+
+</aura:component>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Path Component</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <!-- Configuring the design attributes -->
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage, lightning__FlowScreen">
+            <property name="recordId" type="String" label="Record Id" description="The Salesforce Object Record Id!"/>
+            <property name="objectApiName" type="String" label="Object Api Name" description="Salesforce Object API Name"/>
+            <property name="fieldApiName" type="String" label="Picklist Field API Name" description="Picklist Field API Name" />
+            <property name="currentValue" type="String" label="The current picklist value!"
+                description="The current picklist value!" />
+            <property name="pathType" type="String" label="Type of the path."
+                description="The type of path you wanted to show. Valid values are base, path" />
+            <property name="values" type="String" label="The picklist field values"
+                description="provide all the picklist api name comma separated"/>
+            <property name="buttonLocation" type="String" label="Location of the button"
+                description="Where you wanted to display the button. The valid values are Top, SameRow"/>
+            <property name="buttonLabel" type="String" label="The Label of the button"
+                description="The Label of the button. For Example, Mark as Current Status"/>
+            <property name="recordTypeName" type="String" label="Name of the record type"
+                description="Please provide the name of the record type if you are using record type name" />
+            <property name="showButton" type="Boolean" label="Show Action Button?"
+                description="Select True if you wanted to see the button, False if you do not wanted to show the action" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,101 @@
+<apex:page standardController="opportunity" extensions="OpportunityCheckInController" lightningStylesheets="true">
+<apex:includeScript value="{!$Resource.gmap}"/>
+<apex:slds />
+
+ 
+
+  <input type="button" value="Check In" onclick="checkIn()" 
+class="slds-button slds-button_stateful .slds-is-selected slds-button_success"/>
+<input type="button" value="Check Out" onclick="checkOut()" 
+class="slds-button slds-button_stateful .slds-is-selected slds-button_destructive"/>
+
+
+      function checkIn(){
+
+          var oppId='{!OppId}';
+
+          GMaps.geolocate({
+          success: function(position) {
+            alert('Doing Checkin for following lat: ' + position.coords.latitude +' and long: ' + position.coords.longitude );
+
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var address='';
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        address=results[1].formatted_address;
+                                     Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.OpportunityCheckInController.
+addCheckIns}',oppId,position.coords.latitude,  position.coords.longitude, 
+address,function(result, event) {console.log(result);alert('Check In Done.
+Successfully!');}
+                            );
+                    }
+                }
+            });
+
+
+  //alert('long' + position.coords.longitude);
+
+            map.setCenter(position.coords.latitude, position.coords.longitude);
+          },
+          error: function(error) {
+            alert('Geolocation failed: '+error.message);
+          },
+          not_supported: function() {
+            alert("Your browser does not support geolocation");
+          },
+          always: function() {
+            alert("Done!");
+          }
+        });
+
+      }
+
+      function checkOut(){
+
+          var oppId='{!OppId}';
+
+          GMaps.geolocate({
+          success: function(position) {
+            alert('Doing CheckOut for following lat: ' + position.coords.latitude +' and long: ' + position.coords.longitude );
+
+            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var address='';
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        address=results[1].formatted_address;
+                                     Visualforce.remoting.Manager.invokeAction(
+                            '{!$RemoteAction.OpportunityCheckInController.addCheckOuts}',oppId,position.coords.latitude,  position.coords.longitude, address,function(result, event) {console.log(result);alert('Check Out Done. Successfully!');}
+                            );
+                    }
+                }
+            });
+
+
+            //alert('long' + position.coords.longitude);
+
+            map.setCenter(position.coords.latitude, 
+                                     position.coords.longitude);
+          },
+          error: function(error) {
+            alert('Geolocation failed: '+error.message);
+          },
+          not_supported: function() {
+            alert("Your browser does not support geolocation");
+          },
+          always: function() {
+            alert("Done!");
+          }
+        });
+
+      }
+
+ 
+
+   https://maps.googleapis.com/maps/api/js?key=AIzaSyBqqej11sosokXGaQTk_-Zw9AIXMVkXoAE&callback=loadMap
+<div id="map"/>
+</apex:page>

@@ -1,0 +1,5 @@
+ol li{ padding:0 0 10px 0;}
+.addButton{ background-color: #2869e0; color: #ffffff; padding: 5px 20px 5px 20px; margin-left: 40px; border-radius: 5px; font-size: 12px;  display: inline-block;}
+.inputFld{border:1px #ccc solid; display:inline-block; width:200px; padding:5px 10px;}
+.crossIcon{display:inline-block; padding:5px; text-decoration:none; color:#ff0000;}
+.crossIcon:hover{color:#0000ff;}

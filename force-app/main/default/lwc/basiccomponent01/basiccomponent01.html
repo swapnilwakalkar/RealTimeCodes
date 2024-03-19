@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Conditional Rendering with Button" icon-name="utility:hierarchy">
+       
+                <template lwc:if={show}>
+                    Peek-a-boo!
+                </template>
+                <template lwc:else>
+                    I'm hiding!
+                </template>
+          
+            <p>
+                <lightning-button onclick={handleClick} variant="neutral" label="Switch"></lightning-button>
+            </p>
+    
+    </lightning-card>
+</template>
